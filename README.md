@@ -205,4 +205,8 @@ docker-compose pull && docker-compose up -d
 
 By mastering these Docker commands and understanding the configuration files, you'll have complete control over your containerized ChromaDB application environment through its entire lifecycle from development to deployment and maintenance.
 
-![[Pasted image 20250415194658.png]]
+---
+
+The actual filename is `local_client.py`.
+![image](https://github.com/user-attachments/assets/aced51b7-b917-4b8a-b680-520f0e63d7d0)
+
