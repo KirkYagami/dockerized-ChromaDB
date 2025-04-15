@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  chroma:
+    image: chromadb/chroma:latest
+    environment:
+      - ALLOW_RESET=True
+      - ANONYMIZED_TELEMETRY=False
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/chroma/chroma
+    restart: on-failure
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - chroma  # Simple dependency without health check condition
+    environment:
+      - CHROMA_HOST=chroma
+      - CHROMA_PORT=8000
+    volumes:
+      - ./app:/app
+    restart: on-failure
+
+volumes:
+  chroma-data:
